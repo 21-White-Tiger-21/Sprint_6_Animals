@@ -46,19 +46,14 @@ public class LionTest {
 
     @Test
     public void doesHaveManeTest() throws Exception {
-//        try {
         Lion lion = new Lion(sex, feline);
         assertEquals(hasMane, lion.doesHaveMane());
-//        } catch (Exception exception) {
-//            Lion lion = new Lion(sex, feline);
-//            assertEquals("Используйте допустимые значения пола животного - самец или самка", lion.doesHaveMane());
-//        }
     }
 
     @Test
     public void getFoodTest() throws Exception {
-        Lion lion = new Lion(sex, feline);
-        Mockito.when(feline.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
-        assertEquals(List.of("Животные", "Птицы", "Рыба"), lion.getFood());
+        Lion lion = new Lion("Самец", feline);
+        lion.getFood();
+        Mockito.verify(feline, Mockito.times(1)).getFood(Mockito.anyString());
     }
 }
